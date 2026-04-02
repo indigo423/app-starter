@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Activity, Server, Settings } from "lucide-react";
 import { ApplicationCard } from "@/components/application-card";
 import { applications, MONITORING_PUBLIC_IP, getApplicationUrl } from "@/lib/applications";
