@@ -1,6 +1,6 @@
 import { Activity, Server, Settings } from "lucide-react";
 import { ApplicationCard } from "@/components/application-card";
-import { applications, MONITORING_PUBLIC_IP } from "@/lib/applications";
+import { applications, MONITORING_PUBLIC_IP, getApplicationUrl } from "@/lib/applications";
 import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
@@ -76,7 +76,7 @@ export default function Home() {
         {/* Applications Grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {applications.map((app) => (
-            <ApplicationCard key={app.name} application={app} />
+            <ApplicationCard key={app.name} application={app} url={getApplicationUrl(app.path)} />
           ))}
         </div>
 

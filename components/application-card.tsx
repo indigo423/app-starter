@@ -5,11 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Application } from "@/lib/applications";
-import { getApplicationUrl } from "@/lib/applications";
 import { AppIcon } from "./app-icon";
 
 interface ApplicationCardProps {
   application: Application;
+  url: string;
 }
 
 const categoryColors: Record<Application["category"], string> = {
@@ -19,8 +19,7 @@ const categoryColors: Record<Application["category"], string> = {
   simulation: "bg-pink-500/20 text-pink-400 border-pink-500/30",
 };
 
-export function ApplicationCard({ application }: ApplicationCardProps) {
-  const url = getApplicationUrl(application.path);
+export function ApplicationCard({ application, url }: ApplicationCardProps) {
   const hasCredentials = application.credentials.username && application.credentials.password;
 
   return (
