@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+next.user-config.*
+
+# Environment variables
+.env*.local
+
+# AI tools
+.cursor/
+.windsurf/
+.aider*
+.claude/
+.copilot/
+
+# BMAD
+_bmad/
+_bmad-output/
+
+# v0 sandbox
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
