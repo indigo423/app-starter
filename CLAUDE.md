@@ -57,5 +57,5 @@ Tailwind CSS v4 via `@tailwindcss/postcss`. Colors use OKLCH. Theme variables ar
 ### Notable Config
 
 - `next.config.mjs` has `typescript.ignoreBuildErrors: true` and `images.unoptimized: true`
-- No environment variables — `MONITORING_PUBLIC_IP` is hardcoded in `lib/applications.ts`
+- `NEXT_PUBLIC_MONITORING_IP` — monitoring server IP/hostname, falls back to `"YOUR_MONITORING_IP"` if unset. Copy `.env.example` to `.env.local` to configure locally.
 - Credentials are stored in plain text in `lib/applications.ts` (intentional for lab environments)

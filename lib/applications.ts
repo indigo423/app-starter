@@ -1,8 +1,5 @@
-// ============================================================
-// CONFIGURATION: Replace this with your monitoring server IP
-// ============================================================
-export const MONITORING_PUBLIC_IP = "YOUR_MONITORING_IP";
-// ============================================================
+export const MONITORING_PUBLIC_IP =
+  process.env.NEXT_PUBLIC_MONITORING_IP ?? "127.0.0.1";
 
 export interface Application {
   name: string;
