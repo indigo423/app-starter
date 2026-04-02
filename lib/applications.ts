@@ -10,7 +10,7 @@ export interface Application {
     password?: string;
     note?: string;
   };
-  category: "monitoring" | "visualization" | "infrastructure" | "simulation";
+  category: "lab" | "monitoring" | "infrastructure" | "data-discovery" | "simulation";
   icon: string;
 }
 
@@ -23,7 +23,7 @@ export const applications: Application[] = [
       username: "admin",
       password: "admin",
     },
-    category: "monitoring",
+    category: "lab",
     icon: "opennms",
   },
   {
@@ -34,7 +34,7 @@ export const applications: Application[] = [
       username: "admin",
       password: "admin",
     },
-    category: "visualization",
+    category: "monitoring",
     icon: "grafana",
   },
   {
@@ -75,7 +75,7 @@ export const applications: Application[] = [
       username: "admin@benchmark.lab",
       password: "admin",
     },
-    category: "infrastructure",
+    category: "data-discovery",
     icon: "pgadmin",
   },
   {
@@ -85,7 +85,7 @@ export const applications: Application[] = [
     credentials: {
       note: "No login required",
     },
-    category: "visualization",
+    category: "data-discovery",
     icon: "kibana",
   },
   {

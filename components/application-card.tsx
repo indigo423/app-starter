@@ -13,9 +13,10 @@ interface ApplicationCardProps {
 }
 
 const categoryColors: Record<Application["category"], string> = {
+  lab: "bg-violet-500/20 text-violet-400 border-violet-500/30",
   monitoring: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  visualization: "bg-blue-500/20 text-blue-400 border-blue-500/30",
   infrastructure: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+  "data-discovery": "bg-blue-500/20 text-blue-400 border-blue-500/30",
   simulation: "bg-pink-500/20 text-pink-400 border-pink-500/30",
 };
 
@@ -23,7 +24,7 @@ export function ApplicationCard({ application, url }: ApplicationCardProps) {
   const hasCredentials = application.credentials.username && application.credentials.password;
 
   return (
-    <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/80 hover:shadow-lg hover:shadow-primary/5">
+    <Card className="group relative flex flex-col overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/80 hover:shadow-lg hover:shadow-primary/5">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       
       <CardHeader className="relative pb-3">
@@ -50,7 +51,7 @@ export function ApplicationCard({ application, url }: ApplicationCardProps) {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="relative space-y-4">
+      <CardContent className="relative mt-auto space-y-4">
         <div className="rounded-lg border border-border/50 bg-secondary/30 p-3">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Key className="h-3.5 w-3.5" />

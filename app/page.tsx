@@ -1,11 +1,18 @@
 export const dynamic = "force-dynamic";
 
-import { Activity, Server, Settings } from "lucide-react";
+import { Suspense } from "react";
+import { Activity, Server } from "lucide-react";
 import { ApplicationCard } from "@/components/application-card";
-import { applications, MONITORING_PUBLIC_IP, getApplicationUrl } from "@/lib/applications";
+import { CategoryFilter } from "@/components/category-filter";
+import { applications, MONITORING_PUBLIC_IP, getApplicationUrl, Application } from "@/lib/applications";
 import { Badge } from "@/components/ui/badge";
 
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams;
+  const filtered = category
+    ? applications.filter((app) => app.category === (category as Application["category"]))
+    : applications;
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -17,10 +24,10 @@ export default function Home() {
             </div>
             <div>
               <h1 className="text-lg font-semibold text-foreground">
-                Network Monitoring
+                Lab Portal
               </h1>
               <p className="text-xs text-muted-foreground">
-                Benchmark Lab Portal
+                Monitoring & Benchmarking Tools
               </p>
             </div>
           </div>
@@ -29,55 +36,20 @@ export default function Home() {
               <Server className="h-3.5 w-3.5" />
               <code className="font-mono text-xs">{MONITORING_PUBLIC_IP}</code>
             </Badge>
-            <Badge variant="outline" className="gap-1.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-              Online
-            </Badge>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Title Section */}
-        <div className="mb-8">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Settings className="h-4 w-4" />
-            <span className="text-sm font-medium uppercase tracking-wider">
-              Applications
-            </span>
-          </div>
-          <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">
-            Monitoring & Benchmarking Tools
-          </h2>
-          <p className="mt-2 max-w-2xl text-muted-foreground">
-            Access all network monitoring, visualization, and infrastructure
-            management applications from this central dashboard.
-          </p>
-        </div>
-
-        {/* Category Filter Pills */}
-        <div className="mb-6 flex flex-wrap gap-2">
-          <Badge className="bg-secondary/50 text-secondary-foreground hover:bg-secondary/70">
-            All
-          </Badge>
-          <Badge variant="outline" className="border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
-            Monitoring
-          </Badge>
-          <Badge variant="outline" className="border-blue-500/30 bg-blue-500/10 text-blue-400">
-            Visualization
-          </Badge>
-          <Badge variant="outline" className="border-amber-500/30 bg-amber-500/10 text-amber-400">
-            Infrastructure
-          </Badge>
-          <Badge variant="outline" className="border-pink-500/30 bg-pink-500/10 text-pink-400">
-            Simulation
-          </Badge>
-        </div>
+        {/* Category Filter */}
+        <Suspense>
+          <CategoryFilter />
+        </Suspense>
 
         {/* Applications Grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {applications.map((app) => (
+          {filtered.map((app) => (
             <ApplicationCard key={app.name} application={app} url={getApplicationUrl(app.path)} />
           ))}
         </div>
@@ -90,15 +62,16 @@ export default function Home() {
                 Configuration
               </h3>
               <p className="mt-1 text-xs text-muted-foreground">
-                Update the{" "}
-                <code className="rounded bg-secondary/50 px-1.5 py-0.5 font-mono">
-                  MONITORING_PUBLIC_IP
-                </code>{" "}
-                variable in{" "}
-                <code className="rounded bg-secondary/50 px-1.5 py-0.5 font-mono">
-                  lib/applications.ts
-                </code>{" "}
-                to point to your monitoring server.
+                See the{" "}
+                <a
+                  href="https://github.com/indigo423/app-starter#readme"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-foreground"
+                >
+                  README
+                </a>{" "}
+                for configuration instructions.
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
