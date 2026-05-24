@@ -89,9 +89,9 @@ export const applications: Application[] = [
     icon: "kibana",
   },
   {
-    name: "SNMP Sim (l8opensim)",
+    name: "nl6",
     description: "SNMP device simulator for testing and development",
-    path: "/opensim",
+    path: "/nl6",
     credentials: {
       note: "No login required",
     },
