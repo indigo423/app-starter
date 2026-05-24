@@ -27,6 +27,12 @@ __v0_jsx-dev-runtime.ts
 .v0-trash/
 .vercel/
 
+# IDEs
+.idea/
+
+# TypeScript
+tsconfig.tsbuildinfo
+
 # OS
 .DS_Store
 Thumbs.db
